@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M-Pesa Payment</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        button {
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+        }
+        .message.success {
+            display: block;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .message.error {
+            display: block;
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .message.loading {
+            display: block;
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .hint {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💳 M-Pesa Payment</h1>
+        <p class="subtitle">Pay securely via STK Push</p>
+
+        <form id="paymentForm">
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="254712345678" required>
+                <div class="hint">Format: 254XXXXXXXXX</div>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Amount (KES)</label>
+                <input type="number" id="amount" placeholder="100" min="1" required>
+            </div>
+
+            <button type="submit" id="payBtn">Pay Now</button>
+        </form>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const phone = document.getElementById('phone').value.trim();
+            const amount = document.getElementById('amount').value.trim();
+            const payBtn = document.getElementById('payBtn');
+            const messageDiv = document.getElementById('message');
+
+            // Reset message
+            messageDiv.className = 'message';
+            messageDiv.textContent = '';
+
+            // Validate
+            if (!phone || !amount) {
+                showMessage('Please fill in all fields.', 'error');
+                return;
+            }
+
+            // Disable button
+            payBtn.disabled = true;
+            payBtn.textContent = 'Processing...';
+            showMessage('Sending payment request to your phone...', 'loading');
+
+            try {
+                const response = await fetch('/api/stk-push', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ phone, amount: parseInt(amount) })
+                });
+
+                const data = await response.json();
+
+                if (data.success && data.data.ResponseCode === '0') {
+                    showMessage(
+                        `✅ STK Push sent! Check your phone and enter your PIN to complete payment.\n\n` +
+                        `Checkout ID: ${data.data.CheckoutRequestID}`,
+                        'success'
+                    );
+                } else {
+                    showMessage(`❌ Payment failed: ${data.message || data.data?.ResponseDescription || 'Unknown error'}`, 'error');
+                }
+            } catch (error) {
+                showMessage('❌ Error connecting to server. Please try again.', 'error');
+                console.error('Payment error:', error);
+            } finally {
+                payBtn.disabled = false;
+                payBtn.textContent = 'Pay Now';
+            }
+        });
+
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.className = 'message ' + type;
+            messageDiv.textContent = text;
+            messageDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
