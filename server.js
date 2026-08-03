@@ -142,7 +142,7 @@ app.post('/api/stk-push', async (req, res) => {
             PartyB: SHORTCODE,
             PhoneNumber: formattedPhone,
             CallBackURL: CALLBACK_URL || 'https://example.com/callback',
-            AccountReference: `INV${Date.now()}`,
+            AccountReference: `John Munga`,
             TransactionDesc: 'Payment for services'
         };
 
