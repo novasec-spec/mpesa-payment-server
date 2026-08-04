@@ -1,0 +1,28 @@
+{
+  "transactions": [
+    {
+      "checkoutRequestID": "ws_CO_040820261133037708374149",
+      "merchantRequestID": "341c-4aee-9c3b-154942c6a05464311",
+      "phoneNumber": "254708374149",
+      "amount": "100",
+      "status": "PENDING",
+      "responseCode": "0",
+      "responseDescription": "Success. Request accepted for processing",
+      "customerMessage": "Success. Request accepted for processing",
+      "createdAt": "2026-08-04T08:33:03.617Z",
+      "timestamp": "2026-08-04T08:33:03.620Z"
+    },
+    {
+      "checkoutRequestID": "ws_CO_040820261133508142522557",
+      "merchantRequestID": "5402-499b-b4c2-6e3ebadad32b68798",
+      "phoneNumber": "254142522557",
+      "amount": "100",
+      "status": "PENDING",
+      "responseCode": "0",
+      "responseDescription": "Success. Request accepted for processing",
+      "customerMessage": "Success. Request accepted for processing",
+      "createdAt": "2026-08-04T08:33:50.695Z",
+      "timestamp": "2026-08-04T08:33:50.696Z"
+    }
+  ]
+}

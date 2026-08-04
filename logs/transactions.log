@@ -1,0 +1,88 @@
+[2026-08-04T08:32:15.457Z] [STARTUP] ========================================
+[2026-08-04T08:32:15.460Z] [STARTUP] 🚀 M-Pesa Monitor Server running on port 3000
+[2026-08-04T08:32:15.460Z] [STARTUP] 📍 http://localhost:3000
+[2026-08-04T08:32:15.461Z] [STARTUP] 📊 Transaction logs: /data/data/com.termux/files/home/mpesa-payment-server/logs/transactions.log
+[2026-08-04T08:32:15.461Z] [STARTUP] 💾 Transaction DB: /data/data/com.termux/files/home/mpesa-payment-server/transactions.json
+[2026-08-04T08:32:15.461Z] [STARTUP] ========================================
+[2026-08-04T08:32:15.463Z] [AUTH] 🔄 Attempting to get access token...
+[2026-08-04T08:32:17.126Z] [STARTUP] ========================================
+[2026-08-04T08:32:17.130Z] [STARTUP] 🚀 M-Pesa Monitor Server running on port 3000
+[2026-08-04T08:32:17.130Z] [STARTUP] 📍 http://localhost:3000
+[2026-08-04T08:32:17.131Z] [STARTUP] 📊 Transaction logs: /data/data/com.termux/files/home/mpesa-payment-server/logs/transactions.log
+[2026-08-04T08:32:17.131Z] [STARTUP] 💾 Transaction DB: /data/data/com.termux/files/home/mpesa-payment-server/transactions.json
+[2026-08-04T08:32:17.132Z] [STARTUP] ========================================
+[2026-08-04T08:32:17.133Z] [AUTH] 🔄 Attempting to get access token...
+[2026-08-04T08:32:18.273Z] [AUTH] ✅ Access token generated successfully
+[2026-08-04T08:32:18.275Z] [STARTUP] ✅ Credentials are valid! Ready for payments.
+[2026-08-04T08:33:01.976Z] [PAYMENT] ========================================
+[2026-08-04T08:33:01.977Z] [PAYMENT] 📱 New payment request: Phone: 254708374149, Amount: 100
+[2026-08-04T08:33:01.978Z] [PAYMENT] 📱 Formatted phone: 254708374149
+[2026-08-04T08:33:01.978Z] [AUTH] 🔄 Attempting to get access token...
+[2026-08-04T08:33:02.987Z] [AUTH] ✅ Access token generated successfully
+[2026-08-04T08:33:02.990Z] [PAYMENT] 📤 Sending STK Push request...
+[2026-08-04T08:33:02.991Z] [DEBUG] 📦 Payload: {
+  "BusinessShortCode": "174379",
+  "Password": "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjYwODA0MDgzMzAy",
+  "Timestamp": "20260804083302",
+  "TransactionType": "CustomerPayBillOnline",
+  "Amount": "100",
+  "PartyA": "254708374149",
+  "PartyB": "174379",
+  "PhoneNumber": "254708374149",
+  "CallBackURL": "https://mpesa-payment-server.onrender.com/api/callback",
+  "AccountReference": "INV1785832382990",
+  "TransactionDesc": "Payment for services"
+}
+[2026-08-04T08:33:03.616Z] [PAYMENT] 📥 STK Push response: {
+  "MerchantRequestID": "341c-4aee-9c3b-154942c6a05464311",
+  "CheckoutRequestID": "ws_CO_040820261133037708374149",
+  "ResponseCode": "0",
+  "ResponseDescription": "Success. Request accepted for processing",
+  "CustomerMessage": "Success. Request accepted for processing"
+}
+[2026-08-04T08:33:03.621Z] [DB] 💾 Transaction saved with ID: ws_CO_040820261133037708374149
+[2026-08-04T08:33:05.539Z] [STARTUP] ========================================
+[2026-08-04T08:33:05.542Z] [STARTUP] 🚀 M-Pesa Monitor Server running on port 3000
+[2026-08-04T08:33:05.543Z] [STARTUP] 📍 http://localhost:3000
+[2026-08-04T08:33:05.543Z] [STARTUP] 📊 Transaction logs: /data/data/com.termux/files/home/mpesa-payment-server/logs/transactions.log
+[2026-08-04T08:33:05.544Z] [STARTUP] 💾 Transaction DB: /data/data/com.termux/files/home/mpesa-payment-server/transactions.json
+[2026-08-04T08:33:05.544Z] [STARTUP] ========================================
+[2026-08-04T08:33:05.545Z] [AUTH] 🔄 Attempting to get access token...
+[2026-08-04T08:33:06.548Z] [AUTH] ✅ Access token generated successfully
+[2026-08-04T08:33:06.549Z] [STARTUP] ✅ Credentials are valid! Ready for payments.
+[2026-08-04T08:33:48.769Z] [PAYMENT] ========================================
+[2026-08-04T08:33:48.770Z] [PAYMENT] 📱 New payment request: Phone: 254142522557, Amount: 100
+[2026-08-04T08:33:48.770Z] [PAYMENT] 📱 Formatted phone: 254142522557
+[2026-08-04T08:33:48.771Z] [AUTH] 🔄 Attempting to get access token...
+[2026-08-04T08:33:50.199Z] [AUTH] ✅ Access token generated successfully
+[2026-08-04T08:33:50.201Z] [PAYMENT] 📤 Sending STK Push request...
+[2026-08-04T08:33:50.202Z] [DEBUG] 📦 Payload: {
+  "BusinessShortCode": "174379",
+  "Password": "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjYwODA0MDgzMzUw",
+  "Timestamp": "20260804083350",
+  "TransactionType": "CustomerPayBillOnline",
+  "Amount": "100",
+  "PartyA": "254142522557",
+  "PartyB": "174379",
+  "PhoneNumber": "254142522557",
+  "CallBackURL": "https://mpesa-payment-server.onrender.com/api/callback",
+  "AccountReference": "INV1785832430201",
+  "TransactionDesc": "Payment for services"
+}
+[2026-08-04T08:33:50.693Z] [PAYMENT] 📥 STK Push response: {
+  "MerchantRequestID": "5402-499b-b4c2-6e3ebadad32b68798",
+  "CheckoutRequestID": "ws_CO_040820261133508142522557",
+  "ResponseCode": "0",
+  "ResponseDescription": "Success. Request accepted for processing",
+  "CustomerMessage": "Success. Request accepted for processing"
+}
+[2026-08-04T08:33:50.696Z] [DB] 💾 Transaction saved with ID: ws_CO_040820261133508142522557
+[2026-08-04T08:33:52.563Z] [STARTUP] ========================================
+[2026-08-04T08:33:52.567Z] [STARTUP] 🚀 M-Pesa Monitor Server running on port 3000
+[2026-08-04T08:33:52.568Z] [STARTUP] 📍 http://localhost:3000
+[2026-08-04T08:33:52.568Z] [STARTUP] 📊 Transaction logs: /data/data/com.termux/files/home/mpesa-payment-server/logs/transactions.log
+[2026-08-04T08:33:52.569Z] [STARTUP] 💾 Transaction DB: /data/data/com.termux/files/home/mpesa-payment-server/transactions.json
+[2026-08-04T08:33:52.569Z] [STARTUP] ========================================
+[2026-08-04T08:33:52.570Z] [AUTH] 🔄 Attempting to get access token...
+[2026-08-04T08:34:13.608Z] [AUTH] ✅ Access token generated successfully
+[2026-08-04T08:34:13.621Z] [STARTUP] ✅ Credentials are valid! Ready for payments.
